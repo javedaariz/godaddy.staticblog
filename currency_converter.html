@@ -74,80 +74,135 @@
   </header>
 
   <main>
-    <label for="fromCurrency">From Currency:</label>
-    <select id="fromCurrency"></select>
+    <!-- <section id="currency-converter" class="tool-card"> -->
+  <h2>Currency Converter</h2>
+  <p>Convert currencies in real-time for travel, shopping, or online payments.</p>
 
-    <label for="toCurrency">To Currency:</label>
-    <select id="toCurrency"></select>
+  <label for="fromCurrency">From Currency:</label>
+  <select id="fromCurrency">
+    <!-- Options will be populated dynamically -->
+  </select>
 
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" placeholder="Enter amount" value="1">
+  <label for="toCurrency">To Currency:</label>
+  <select id="toCurrency">
+    <!-- Options will be populated dynamically -->
+  </select>
 
-    <button onclick="convertCurrency()">Convert</button>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" placeholder="Enter amount" value="1">
 
-    <div id="conversionResult" class="result"></div>
+  <button onclick="convertCurrency()">Convert</button>
+
+  <div id="conversionResult" class="result" style="display:none;"></div>
+<!-- </section> -->
+
+
+
+<style>
+  #currency-converter {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  #currency-converter label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+  }
+  #currency-converter input,
+  #currency-converter select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  #currency-converter button {
+    margin-top: 20px;
+    padding: 12px;
+    background: #00b4d8;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+  }
+  #currency-converter button:hover {
+    background: #0077b6;
+  }
+  #currency-converter .result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e2f7e2;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+</style>
+
   </main>
 
   <script>
-    const apiUrl = 'https://api.exchangerate.host/latest';
+  const apiKey = 'YOUR_API_KEY'; // Replace with your API key
+  const apiUrl = 'https://api.exchangerate-api.com/v4/latest/USD';
 
-    async function fetchCurrencies() {
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const currencies = Object.keys(data.rates);
+  async function fetchCurrencies() {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const currencies = Object.keys(data.rates);
 
-        const fromSelect = document.getElementById('fromCurrency');
-        const toSelect = document.getElementById('toCurrency');
+      const fromCurrencySelect = document.getElementById('fromCurrency');
+      const toCurrencySelect = document.getElementById('toCurrency');
 
-        currencies.forEach(currency => {
-          const optionFrom = document.createElement('option');
-          optionFrom.value = currency;
-          optionFrom.textContent = currency;
-          fromSelect.appendChild(optionFrom);
+      currencies.forEach(currency => {
+        const optionFrom = document.createElement('option');
+        optionFrom.value = currency;
+        optionFrom.textContent = currency;
+        fromCurrencySelect.appendChild(optionFrom);
 
-          const optionTo = document.createElement('option');
-          optionTo.value = currency;
-          optionTo.textContent = currency;
-          toSelect.appendChild(optionTo);
-        });
+        const optionTo = document.createElement('option');
+        optionTo.value = currency;
+        optionTo.textContent = currency;
+        toCurrencySelect.appendChild(optionTo);
+      });
+    } catch (error) {
+      console.error('Error fetching currencies:', error);
+    }
+  }
 
-        // Set default selections
-        fromSelect.value = 'USD';
-        toSelect.value = 'EUR';
-      } catch (error) {
-        alert('Failed to load currencies.');
-        console.error(error);
-      }
+  async function convertCurrency() {
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+
+    if (!amount || amount <= 0) {
+      alert('Please enter a valid amount.');
+      return;
     }
 
-    async function convertCurrency() {
-      const from = document.getElementById('fromCurrency').value;
-      const to = document.getElementById('toCurrency').value;
-      const amount = parseFloat(document.getElementById('amount').value);
+    try {
+      const response = await fetch(`${apiUrl}?base=${fromCurrency}`);
+      const data = await response.json();
+      const rate = data.rates[toCurrency];
+      const result = amount * rate;
 
-      if (!amount || amount <= 0) {
-        alert('Please enter a valid amount.');
-        return;
-      }
-
-      try {
-        const response = await fetch(`${apiUrl}?base=${from}&symbols=${to}`);
-        const data = await response.json();
-        const rate = data.rates[to];
-        const result = amount * rate;
-
-        const resultDiv = document.getElementById('conversionResult');
-        resultDiv.innerHTML = `${amount} ${from} = <strong>${result.toFixed(2)} ${to}</strong>`;
-        resultDiv.style.display = 'block';
-      } catch (error) {
-        alert('Error fetching exchange rate.');
-        console.error(error);
-      }
+      const resultDiv = document.getElementById('conversionResult');
+      resultDiv.innerHTML = `${amount} ${fromCurrency} = <strong>${result.toFixed(2)} ${toCurrency}</strong>`;
+      resultDiv.style.display = 'block';
+    } catch (error) {
+      console.error('Error fetching exchange rates:', error);
     }
+  }
 
-    fetchCurrencies();
-  </script>
+  // Initialize the currency converter
+  fetchCurrencies();
+</script>
 
 </body>
 </html>
