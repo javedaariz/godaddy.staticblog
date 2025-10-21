@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Difference Calculator - Calculate Days Between Dates</title>
+  <meta name="description" content="Calculate the difference between two dates in years, months, and days with our Date Difference Calculator.">
+  <meta name="keywords" content="Date Difference Calculator, Days Between Dates, Calculate Age, Duration, Online Tool">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    main {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    label { display: block; margin: 15px 0 5px; font-weight: bold; }
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #00b4d8;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
+    button:hover { background: #0077b6; }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Date Difference Calculator</h1>
+  <p>Find the exact difference between two dates in years, months, and days.</p>
+</header>
+
+<main>
+  <label for="startDate">Start Date:</label>
+  <input type="date" id="startDate">
+
+  <label for="endDate">End Date:</label>
+  <input type="date" id="endDate">
+
+  <button onclick="calculateDateDifference()">Calculate Difference</button>
+
+  <div id="result" class="result"></div>
+</main>
+
+<script>
+function calculateDateDifference() {
+  const start = new Date(document.getElementById('startDate').value);
+  const end = new Date(document.getElementById('endDate').value);
+
+  if (!start || !end || start > end) {
+    alert('Please enter valid start and end dates (start date should be before end date).');
+    return;
+  }
+
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+
+  if (days < 0) {
+    months -= 1;
+    days += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+  }
+
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = `Difference: ${years} years, ${months} months, and ${days} days.`;
+  resultDiv.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
