@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator - Advanced Math Tool</title>
+  <meta name="description" content="Use the Scientific Calculator for advanced mathematical calculations including sin, cos, tan, log, square root, exponent, and more.">
+  <meta name="keywords" content="Scientific Calculator, Advanced Calculator, Math Tool, sin, cos, tan, log, sqrt, exponent">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    main {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-align: right;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button.number { background: #e0e0e0; }
+    button.operator { background: #00b4d8; color: white; }
+    button.function { background: #ff6b6b; color: white; }
+    button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Scientific Calculator</h1>
+  <p>Perform advanced mathematical calculations easily.</p>
+</header>
+
+<main>
+  <input type="text" id="display" disabled placeholder="0">
+
+  <div class="buttons">
+    <button class="function" onclick="clearDisplay()">C</button>
+    <button class="function" onclick="backspace()">⌫</button>
+    <button class="function" onclick="appendFunction('Math.sqrt(')">√</button>
+    <button class="function" onclick="appendFunction('Math.pow(')">x²</button>
+    <button class="operator" onclick="appendOperator('/')">/</button>
+
+    <button class="number" onclick="appendNumber('7')">7</button>
+    <button class="number" onclick="appendNumber('8')">8</button>
+    <button class="number" onclick="appendNumber('9')">9</button>
+    <button class="operator" onclick="appendOperator('*')">*</button>
+    <button class="function" onclick="appendFunction('Math.log(')">log</button>
+
+    <button class="number" onclick="appendNumber('4')">4</button>
+    <button class="number" onclick="appendNumber('5')">5</button>
+    <button class="number" onclick="appendNumber('6')">6</button>
+    <button class="operator" onclick="appendOperator('-')">-</button>
+    <button class="function" onclick="appendFunction('Math.sin(')">sin</button>
+
+    <button class="number" onclick="appendNumber('1')">1</button>
+    <button class="number" onclick="appendNumber('2')">2</button>
+    <button class="number" onclick="appendNumber('3')">3</button>
+    <button class="operator" onclick="appendOperator('+')">+</button>
+    <button class="function" onclick="appendFunction('Math.cos(')">cos</button>
+
+    <button class="number" onclick="appendNumber('0')">0</button>
+    <button class="number" onclick="appendNumber('.')">.</button>
+    <button class="function" onclick="appendFunction('Math.tan(')">tan</button>
+    <button class="function" onclick="appendFunction('Math.PI')">π</button>
+    <button class="operator" onclick="calculate()">=</button>
+  </div>
+</main>
+
+<script>
+  let display = document.getElementById('display');
+  let currentInput = '';
+
+  function appendNumber(num) {
+    currentInput += num;
+    display.value = currentInput;
+  }
+
+  function appendOperator(op) {
+    currentInput += op;
+    display.value = currentInput;
+  }
+
+  function appendFunction(func) {
+    if (func === 'Math.PI') {
+      currentInput += Math.PI;
+    } else {
+      currentInput += func;
+    }
+    display.value = currentInput;
+  }
+
+  function clearDisplay() {
+    currentInput = '';
+    display.value = '';
+  }
+
+  function backspace() {
+    currentInput = currentInput.slice(0, -1);
+    display.value = currentInput;
+  }
+
+  function calculate() {
+    try {
+      const result = eval(currentInput);
+      display.value = result;
+      currentInput = result.toString();
+    } catch {
+      display.value = 'Error';
+      currentInput = '';
+    }
+  }
+</script>
+
+</body>
+</html>
