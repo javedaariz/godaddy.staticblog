@@ -1,220 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top 10 Travel Destinations for 2025 - Traveller Guide</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator Tool - Calculate Your Body Mass Index</title>
+  <meta name="description" content="Use our free BMI Calculator to check your Body Mass Index. Simple, fast, and accurate calculator for men and women.">
+  <meta name="keywords" content="BMI calculator, body mass index, health calculator, fitness tool, daily health check">
+  <meta name="robots" content="index, follow">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       line-height: 1.6;
       background: #f4f4f4;
       color: #333;
+      margin: 0;
+      padding: 0;
     }
     header {
-      background: #0077b6;
+      background: #28a745;
       color: white;
-      padding: 2rem 1rem;
+      padding: 2rem;
       text-align: center;
     }
     header h1 {
-      margin: 0 0 0.5rem 0;
-    }
-    header p {
       margin: 0;
-      font-size: 1.1rem;
     }
     main {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 1rem;
-    }
-    section.destination {
+      max-width: 700px;
+      margin: 30px auto;
       background: white;
-      border-radius: 8px;
       padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    section.destination img {
-      max-width: 100%;
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
       border-radius: 6px;
-      margin-bottom: 15px;
+      font-size: 16px;
+      cursor: pointer;
     }
-    section.destination h2 {
-      margin-top: 0;
-      color: #0077b6;
+    button:hover {
+      background: #218838;
     }
-    section.destination h3 {
-      margin: 10px 0 5px 0;
-      color: #555;
-    }
-    ul {
-      padding-left: 20px;
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
     footer {
       text-align: center;
       padding: 20px;
-      background: #0077b6;
-      color: white;
       margin-top: 40px;
-    }
-    .search-box {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .search-box input {
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      background: #f1f1f1;
+      font-size: 0.9rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Top 10 Travel Destinations for 2025</h1>
-    <p>A complete guide for travelers: explore, pack, and go!</p>
+    <h1>BMI Calculator - Check Your Body Mass Index</h1>
+    <p>Accurate and free daily health tool</p>
   </header>
 
   <main>
-    <div class="search-box">
-      <input type="search" id="searchInput" placeholder="Search for city or country...">
-    </div>
+    <p>Use this BMI calculator to check your body mass index (BMI). Enter your weight and height, and get your BMI instantly.</p>
 
-    <section class="destination" data-name="Lisbon Portugal">
-      <img src="https://example.com/images/lisbon.jpg" alt="Lisbon">
-      <h2>1. Lisbon, Portugal</h2>
-      <h3>Overview</h3>
-      <p>Lisbon, Portugal's coastal capital, offers a vibrant atmosphere with abundant sunshine and green spaces for relaxation and adventure.</p>
-      <h3>Weather</h3>
-      <p>Mild winters and warm summers.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Belém Tower</li>
-        <li>Alfama District</li>
-        <li>Historic Tram 28</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Light clothing for daytime, a light jacket for evenings, and comfortable walking shoes.</p>
-    </section>
+    <label for="weight">Weight (kg)</label>
+    <input type="number" id="weight" placeholder="Enter your weight in kilograms">
 
-    <section class="destination" data-name="Tromso Norway">
-      <img src="https://example.com/images/tromso.jpg" alt="Tromsø">
-      <h2>2. Tromsø, Norway</h2>
-      <h3>Overview</h3>
-      <p>Tromsø, located above the Arctic Circle, is renowned for its stunning Northern Lights displays and vibrant cultural scene.</p>
-      <h3>Weather</h3>
-      <p>Cold winters with opportunities to see the Northern Lights.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Arctic Wildlife Centre</li>
-        <li>Polar Museum</li>
-        <li>Dog sledding tours</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Warm layers, thermal wear, and insulated boots.</p>
-    </section>
+    <label for="height">Height (cm)</label>
+    <input type="number" id="height" placeholder="Enter your height in centimeters">
 
-    <section class="destination" data-name="Sapporo Japan">
-      <img src="https://example.com/images/sapporo.jpg" alt="Sapporo">
-      <h2>3. Sapporo, Japan</h2>
-      <h3>Overview</h3>
-      <p>Sapporo, known for its annual snow festival, offers a blend of modern city life and traditional Japanese culture.</p>
-      <h3>Weather</h3>
-      <p>Cold winters with heavy snowfall.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Sapporo Snow Festival</li>
-        <li>Odori Park</li>
-        <li>Sapporo Beer Museum</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Warm clothing, waterproof gear, and snow boots.</p>
-    </section>
+    <button onclick="calculateBMI()">Calculate BMI</button>
 
-    <section class="destination" data-name="Madeira Portugal">
-      <img src="https://example.com/images/madeira.jpg" alt="Madeira">
-      <h2>4. Madeira, Portugal</h2>
-      <h3>Overview</h3>
-      <p>Madeira is celebrated for its rugged landscape and botanical gardens, perfect for nature lovers and hikers.</p>
-      <h3>Weather</h3>
-      <p>Mild year-round climate.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Laurisilva Forest</li>
-        <li>Monte Palace</li>
-        <li>Cabo Girão Skywalk</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Light clothing, sunscreen, and hiking shoes.</p>
-    </section>
+    <div id="result" class="result hidden"></div>
+  </main>
 
-    <section class="destination" data-name="Reggio Calabria Italy">
-      <img src="https://example.com/images/reggio_calabria.jpg" alt="Reggio Calabria">
-      <h2>5. Reggio Calabria, Italy</h2>
-      <h3>Overview</h3>
-      <p>Reggio Calabria offers a rich history, beautiful beaches, and Mediterranean charm at the tip of Italy's boot.</p>
-      <h3>Weather</h3>
-      <p>Warm Mediterranean climate.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>National Archaeological Museum</li>
-        <li>Scilla</li>
-        <li>Aspromonte National Park</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Light clothing, swimwear, and comfortable footwear.</p>
-    </section>
+  <footer>
+    &copy; 2025 Daily Health Tools | SEO Optimized BMI Calculator
+  </footer>
 
-    <section class="destination" data-name="Limon Costa Rica">
-      <img src="https://example.com/images/limon.jpg" alt="Limon">
-      <h2>6. Limon, Costa Rica</h2>
-      <h3>Overview</h3>
-      <p>Limon is known for its Afro-Caribbean culture, rainforests, and vibrant Caribbean coast.</p>
-      <h3>Weather</h3>
-      <p>Tropical climate; rainy season May to October.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Tortuguero National Park</li>
-        <li>Cahuita National Park</li>
-        <li>Puerto Viejo</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Lightweight clothing, insect repellent, and waterproof gear.</p>
-    </section>
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const heightCm = parseFloat(document.getElementById('height').value);
+      if (!weight || !heightCm) {
+        alert('Please enter valid numbers for weight and height.');
+        return;
+      }
+      const heightM = heightCm / 100;
+      const bmi = weight / (heightM * heightM);
+      let category = '';
 
-    <section class="destination" data-name="Bodrum Turkey">
-      <img src="https://example.com/images/bodrum.jpg" alt="Bodrum">
-      <h2>7. Bodrum, Turkey</h2>
-      <h3>Overview</h3>
-      <p>Bodrum is famed for its white-washed houses, turquoise waters, and lively nightlife.</p>
-      <h3>Weather</h3>
-      <p>Hot summers and mild winters.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Bodrum Castle</li>
-        <li>Mausoleum at Halicarnassus</li>
-        <li>Local bazaars</li>
-      </ul>
-      <h3>Packing Tips</h3>
-      <p>Light clothing, swimwear, sun protection.</p>
-    </section>
+      if (bmi < 18.5) category = 'Underweight';
+      else if (bmi < 24.9) category = 'Normal weight';
+      else if (bmi < 29.9) category = 'Overweight';
+      else category = 'Obese';
 
-    <section class="destination" data-name="New Haven USA">
-      <img src="https://example.com/images/new_haven.jpg" alt="New Haven">
-      <h2>8. New Haven, Connecticut, USA</h2>
-      <h3>Overview</h3>
-      <p>New Haven blends academic charm with cultural attractions and historic architecture.</p>
-      <h3>Weather</h3>
-      <p>Cold winters, warm summers.</p>
-      <h3>Top Attractions</h3>
-      <ul>
-        <li>Yale University</li>
-        <li>Shubert Theater</li>
-        <li>Local eateries</li>
-      </ul>
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `Your BMI is <strong>${bmi.toFixed(1)}</strong> (${category})`;
+      resultDiv.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
