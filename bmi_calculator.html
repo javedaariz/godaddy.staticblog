@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator Tool - Calculate Your Body Mass Index</title>
+  <meta name="description" content="Use our free BMI Calculator to check your Body Mass Index. Simple, fast, and accurate calculator for men and women.">
+  <meta name="keywords" content="BMI calculator, body mass index, health calculator, fitness tool, daily health check">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #28a745;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    main {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #f1f1f1;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BMI Calculator - Check Your Body Mass Index</h1>
+    <p>Accurate and free daily health tool</p>
+  </header>
 
+  <main>
+    <p>Use this BMI calculator to check your body mass index (BMI). Enter your weight and height, and get your BMI instantly.</p>
+
+    <label for="weight">Weight (kg)</label>
+    <input type="number" id="weight" placeholder="Enter your weight in kilograms">
+
+    <label for="height">Height (cm)</label>
+    <input type="number" id="height" placeholder="Enter your height in centimeters">
+
+    <button onclick="calculateBMI()">Calculate BMI</button>
+
+    <div id="result" class="result hidden"></div>
+  </main>
+
+  <footer>
+    &copy; 2025 Daily Health Tools | SEO Optimized BMI Calculator
+  </footer>
+
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const heightCm = parseFloat(document.getElementById('height').value);
+      if (!weight || !heightCm) {
+        alert('Please enter valid numbers for weight and height.');
+        return;
+      }
+      const heightM = heightCm / 100;
+      const bmi = weight / (heightM * heightM);
+      let category = '';
+
+      if (bmi < 18.5) category = 'Underweight';
+      else if (bmi < 24.9) category = 'Normal weight';
+      else if (bmi < 29.9) category = 'Overweight';
+      else category = 'Obese';
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `Your BMI is <strong>${bmi.toFixed(1)}</strong> (${category})`;
+      resultDiv.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
