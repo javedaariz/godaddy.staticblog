@@ -1,228 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background-color: #f4f4f9;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        header {
-            background: #4e54c8;
-            background: linear-gradient(to right, #8f94fb, #4e54c8);
-            padding: 20px;
-            color: white;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-        }
-
-        nav {
-            margin-top: 10px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .toggle-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .toggle-btn:hover {
-            background: #ddd;
-        }
-
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 30px auto;
-            gap: 20px;
-            padding: 0 20px;
-        }
-
-        .main-content {
-            flex: 3;
-        }
-
-        .sidebar {
-            flex: 1;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .blog-post {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s, background 0.3s, color 0.3s;
-        }
-
-        .blog-post:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-post h2 {
-            margin-bottom: 10px;
-            color: #4e54c8;
-        }
-
-        .blog-post p {
-            line-height: 1.6;
-        }
-
-        .sidebar h3 {
-            margin-bottom: 15px;
-            color: #4e54c8;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .sidebar ul li a:hover {
-            color: #4e54c8;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #4e54c8;
-            color: white;
-            margin-top: 50px;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #121212;
-            color: #f1f1f1;
-        }
-
-        body.dark-mode .blog-post,
-        body.dark-mode .sidebar {
-            background-color: #1e1e1e;
-            color: #f1f1f1;
-        }
-
-        body.dark-mode .blog-post h2,
-        body.dark-mode .sidebar h3 {
-            color: #8f94fb;
-        }
-
-        body.dark-mode footer {
-            background: #1e1e1e;
-            color: #f1f1f1;
-        }
-
-        @media(max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top 10 Travel Destinations for 2025 - Traveller Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 0.5rem 0;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 1rem;
+    }
+    section.destination {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    section.destination img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    section.destination h2 {
+      margin-top: 0;
+      color: #0077b6;
+    }
+    section.destination h3 {
+      margin: 10px 0 5px 0;
+      color: #555;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0077b6;
+      color: white;
+      margin-top: 40px;
+    }
+    .search-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .search-box input {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Awesome Blog</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-        <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
-    </header>
+  <header>
+    <h1>Top 10 Travel Destinations for 2025</h1>
+    <p>A complete guide for travelers: explore, pack, and go!</p>
+  </header>
 
-    <div class="container">
-        <div class="main-content">
-            <div class="blog-post">
-                <h2>Post Title 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-            </div>
-            <div class="blog-post">
-                <h2>Post Title 2</h2>
-                <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</p>
-            </div>
-            <div class="blog-post">
-                <h2>Post Title 3</h2>
-                <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
-            </div>
-        </div>
-
-        <aside class="sidebar">
-            <h3>Categories</h3>
-            <ul>
-                <li><a href="#">Technology</a></li>
-                <li><a href="CheapestCoastalTowns.html">Travel</a></li>
-                <li><a href="#">Lifestyle</a></li>
-                <li><a href="#">Food</a></li>
-            </ul>
-
-            <h3>Recent Posts</h3>
-            <ul>
-                <li><a href="#">Exploring the Mountains</a></li>
-                <li><a href="#">Best Coding Practices</a></li>
-                <li><a href="#">Delicious Vegan Recipes</a></li>
-            </ul>
-        </aside>
+  <main>
+    <div class="search-box">
+      <input type="search" id="searchInput" placeholder="Search for city or country...">
     </div>
 
-    <footer>
-        &copy; 2025 My Awesome Blog. All rights reserved.
-    </footer>
+    <section class="destination" data-name="Lisbon Portugal">
+      <img src="https://example.com/images/lisbon.jpg" alt="Lisbon">
+      <h2>1. Lisbon, Portugal</h2>
+      <h3>Overview</h3>
+      <p>Lisbon, Portugal's coastal capital, offers a vibrant atmosphere with abundant sunshine and green spaces for relaxation and adventure.</p>
+      <h3>Weather</h3>
+      <p>Mild winters and warm summers.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Belém Tower</li>
+        <li>Alfama District</li>
+        <li>Historic Tram 28</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Light clothing for daytime, a light jacket for evenings, and comfortable walking shoes.</p>
+    </section>
 
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
-</body>
-</html>
+    <section class="destination" data-name="Tromso Norway">
+      <img src="https://example.com/images/tromso.jpg" alt="Tromsø">
+      <h2>2. Tromsø, Norway</h2>
+      <h3>Overview</h3>
+      <p>Tromsø, located above the Arctic Circle, is renowned for its stunning Northern Lights displays and vibrant cultural scene.</p>
+      <h3>Weather</h3>
+      <p>Cold winters with opportunities to see the Northern Lights.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Arctic Wildlife Centre</li>
+        <li>Polar Museum</li>
+        <li>Dog sledding tours</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Warm layers, thermal wear, and insulated boots.</p>
+    </section>
 
+    <section class="destination" data-name="Sapporo Japan">
+      <img src="https://example.com/images/sapporo.jpg" alt="Sapporo">
+      <h2>3. Sapporo, Japan</h2>
+      <h3>Overview</h3>
+      <p>Sapporo, known for its annual snow festival, offers a blend of modern city life and traditional Japanese culture.</p>
+      <h3>Weather</h3>
+      <p>Cold winters with heavy snowfall.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Sapporo Snow Festival</li>
+        <li>Odori Park</li>
+        <li>Sapporo Beer Museum</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Warm clothing, waterproof gear, and snow boots.</p>
+    </section>
 
+    <section class="destination" data-name="Madeira Portugal">
+      <img src="https://example.com/images/madeira.jpg" alt="Madeira">
+      <h2>4. Madeira, Portugal</h2>
+      <h3>Overview</h3>
+      <p>Madeira is celebrated for its rugged landscape and botanical gardens, perfect for nature lovers and hikers.</p>
+      <h3>Weather</h3>
+      <p>Mild year-round climate.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Laurisilva Forest</li>
+        <li>Monte Palace</li>
+        <li>Cabo Girão Skywalk</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Light clothing, sunscreen, and hiking shoes.</p>
+    </section>
+
+    <section class="destination" data-name="Reggio Calabria Italy">
+      <img src="https://example.com/images/reggio_calabria.jpg" alt="Reggio Calabria">
+      <h2>5. Reggio Calabria, Italy</h2>
+      <h3>Overview</h3>
+      <p>Reggio Calabria offers a rich history, beautiful beaches, and Mediterranean charm at the tip of Italy's boot.</p>
+      <h3>Weather</h3>
+      <p>Warm Mediterranean climate.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>National Archaeological Museum</li>
+        <li>Scilla</li>
+        <li>Aspromonte National Park</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Light clothing, swimwear, and comfortable footwear.</p>
+    </section>
+
+    <section class="destination" data-name="Limon Costa Rica">
+      <img src="https://example.com/images/limon.jpg" alt="Limon">
+      <h2>6. Limon, Costa Rica</h2>
+      <h3>Overview</h3>
+      <p>Limon is known for its Afro-Caribbean culture, rainforests, and vibrant Caribbean coast.</p>
+      <h3>Weather</h3>
+      <p>Tropical climate; rainy season May to October.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Tortuguero National Park</li>
+        <li>Cahuita National Park</li>
+        <li>Puerto Viejo</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Lightweight clothing, insect repellent, and waterproof gear.</p>
+    </section>
+
+    <section class="destination" data-name="Bodrum Turkey">
+      <img src="https://example.com/images/bodrum.jpg" alt="Bodrum">
+      <h2>7. Bodrum, Turkey</h2>
+      <h3>Overview</h3>
+      <p>Bodrum is famed for its white-washed houses, turquoise waters, and lively nightlife.</p>
+      <h3>Weather</h3>
+      <p>Hot summers and mild winters.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Bodrum Castle</li>
+        <li>Mausoleum at Halicarnassus</li>
+        <li>Local bazaars</li>
+      </ul>
+      <h3>Packing Tips</h3>
+      <p>Light clothing, swimwear, sun protection.</p>
+    </section>
+
+    <section class="destination" data-name="New Haven USA">
+      <img src="https://example.com/images/new_haven.jpg" alt="New Haven">
+      <h2>8. New Haven, Connecticut, USA</h2>
+      <h3>Overview</h3>
+      <p>New Haven blends academic charm with cultural attractions and historic architecture.</p>
+      <h3>Weather</h3>
+      <p>Cold winters, warm summers.</p>
+      <h3>Top Attractions</h3>
+      <ul>
+        <li>Yale University</li>
+        <li>Shubert Theater</li>
+        <li>Local eateries</li>
+      </ul>
