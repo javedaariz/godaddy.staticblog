@@ -1,116 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Life Tools Hub - Free Online Calculators and Converters</title>
-  <meta name="description" content="Explore the ultimate hub of online tools including BMI Calculator, Loan EMI Calculator, Age Calculator, Currency Converter, Scientific Calculator, Unit Converter, Time Zone Converter, Date Difference Calculator, Tip Calculator, and Standard Calculator. Calculate, convert, and manage your daily life easily.">
-  <meta name="keywords" content="online calculators, BMI calculator, loan EMI calculator, age calculator, currency converter, scientific calculator, unit converter, time zone converter, date difference calculator, tip calculator, standard calculator, daily tools online, free calculators, travel tools, finance calculators, health calculators, measurement converter">
-  <meta name="robots" content="index, follow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Hub | Explore Modern Digital Niches</title>
+  <meta name="description" content="A premium knowledge platform exploring modern digital niches with in-depth guides, tools, and trend-driven insights." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #6366f1;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
+
     header {
-      background: #0077b6;
-      color: white;
+      padding: 110px 20px;
       text-align: center;
-      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: #fff;
     }
-    header h1 { margin-bottom: 0.5rem; }
-    header p { font-size: 1.2rem; }
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+
+    header h1 {
+      font-size: 3.1rem;
+      font-weight: 800;
+      max-width: 920px;
+      margin: 0 auto 22px;
     }
-    h2 {
-      color: #0077b6;
-      margin-top: 2rem;
+
+    header p {
+      font-size: 1.25rem;
+      max-width: 780px;
+      margin: 0 auto 40px;
+      color: #e5e7eb;
     }
-    a.tool-link {
+
+    .cta {
       display: inline-block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #00b4d8;
-      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 12px 30px rgba(99,102,241,0.45);
     }
-    a.tool-link:hover {
-      text-decoration: underline;
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(99,102,241,0.6);
     }
-    p { margin-bottom: 1rem; }
-    ul { margin-bottom: 1rem; }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .section-desc {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 60px;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 34px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+      transition: transform .25s ease, box-shadow .25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 35px 70px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin-bottom: 26px;
+      font-size: 0.9rem;
+    }
+
+    .card ul li { margin-bottom: 8px; }
+
+    .card a {
+      align-self: flex-start;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .credibility {
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: #e5e7eb;
+      border-radius: 30px;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .credibility p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #020617;
+      color: #94a3b8;
+      text-align: center;
+      padding: 45px 20px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>JMHS Creative blogs</h1>
-  <p>Your ultimate collection of free online calculators and converters for everyday use</p>
+  <h1>Explore the Ideas, Tools, and Trends Shaping the Digital World</h1>
+  <p>A curated knowledge platform covering today’s most impactful digital niches — designed for clarity, depth, and real-world relevance.</p>
+  <a href="#topics" class="cta">Browse Focus Areas</a>
 </header>
 
-<main>
-  <p>Welcome to the Daily Life Tools Hub, your one-stop online resource for essential calculators and converters that help you manage daily tasks efficiently. Whether you are calculating your Body Mass Index, planning your finances, converting currencies for travel, or measuring units for work and study, our hub provides easy-to-use, accurate, and free online tools. Each tool is designed to be fast, responsive, and mobile-friendly, ensuring you can access it anywhere at any time.</p>
+<section>
+  <h2>About This Platform</h2>
+  <p class="section-desc">This site is built as a long-term knowledge hub. Each topic is researched, structured, and expanded into its own ecosystem of guides, resources, and practical insights — helping you explore modern digital fields with confidence.</p>
+</section>
 
-  <h2>Tourist Spots</h2>
-  <p>strong>Tourist Spots</strong></p>
-  <a class="tool-link" href="tourist-spots-explorer\tourist_spots.html">Tourist Spots website</a>
+<section id="topics">
+  <h2>Core Knowledge Areas</h2>
+  <p class="section-desc">Each area below leads to a dedicated hub with deep-dive content, tools, and up-to-date insights.</p>
 
-  
-  <h2>BMI Calculator</h2>
-  <p>The <strong>BMI Calculator</strong> is an essential health tool that helps you calculate your Body Mass Index based on your height and weight. Body Mass Index is a key indicator of whether you are underweight, normal, overweight, or obese. Maintaining a healthy BMI is crucial for overall health and fitness. Our online BMI Calculator is fast, accurate, and user-friendly. Simply enter your height and weight, and the calculator instantly provides your BMI along with a health status classification.</p>
-  <a class="tool-link" href="bmi_calculator.html">Use the BMI Calculator</a>
+  <div class="grid">
 
-  <h2>Loan EMI Calculator</h2>
-  <p>Managing loans is easier with our <strong>Loan EMI Calculator</strong>. This finance tool calculates your monthly Equated Monthly Installment (EMI) based on the loan amount, annual interest rate, and loan tenure. It also provides the total payment and total interest for your loan, helping you plan your finances better. Whether you are planning a personal loan, car loan, or home loan, our EMI calculator provides instant and precise calculations, saving you time and effort.</p>
-  <a class="tool-link" href="loan_emi_calculator.html">Use the Loan EMI Calculator</a>
+    <div class="card">
+      <h3>Personal Finance & Money Management</h3>
+      <p>This niche focuses on understanding money in a modern economy — from budgeting and saving to investing and long-term financial planning.</p>
+      <ul>
+        <li>Everyday financial decision-making</li>
+        <li>Digital finance tools and platforms</li>
+        <li>Risk, planning, and wealth-building concepts</li>
+      </ul>
+      <a href="/topics/personal-finance">Explore Finance Hub →</a>
+    </div>
 
-  <h2>Age Calculator</h2>
-  <p>The <strong>Age Calculator</strong> is perfect for anyone who wants to know their exact age in years, months, and days. This tool helps you calculate age based on your birth date and is useful for personal planning, travel, and legal purposes. Simply enter your date of birth, and the calculator instantly gives your exact age. It’s fast, accurate, and ideal for daily use.</p>
-  <a class="tool-link" href="age_calculator.html">Use the Age Calculator</a>
+    <div class="card">
+      <h3>Health, Fitness & Wellness</h3>
+      <p>An evidence-informed look at physical, mental, and lifestyle wellness in a technology-driven world.</p>
+      <ul>
+        <li>Fitness systems and training approaches</li>
+        <li>Nutrition, recovery, and mental health</li>
+        <li>Health technology and wellness tools</li>
+      </ul>
+      <a href="/topics/health-wellness">Explore Wellness Hub →</a>
+    </div>
 
-  <h2>Currency Converter</h2>
-  <p>Traveling abroad or handling international transactions is simple with our <strong>Currency Converter</strong>. This tool supports all major world currencies and provides real-time exchange rates, ensuring accurate conversions. Whether you are converting USD to EUR, INR to GBP, or any other currency, our converter gives you up-to-date results instantly. It is perfect for travelers, business professionals, and online shoppers dealing with multiple currencies.</p>
-  <a class="tool-link" href="currency_converter.html">Use the Currency Converter</a>
+    <div class="card">
+      <h3>Technology & Digital Tools</h3>
+      <p>Explores the software, platforms, and emerging technologies reshaping productivity and digital work.</p>
+      <ul>
+        <li>AI-powered tools and automation</li>
+        <li>Productivity, security, and infrastructure</li>
+        <li>Tool comparisons and use cases</li>
+      </ul>
+      <a href="/topics/technology-tools">Explore Tech Hub →</a>
+    </div>
 
-  <h2>Scientific Calculator</h2>
-  <p>Our <strong>Scientific Calculator</strong> is designed for students, engineers, and anyone needing advanced math functions. It includes operations like sin, cos, tan, log, square roots, exponents, and more. This online tool combines the functionality of a standard calculator with advanced scientific functions, all in a responsive and easy-to-use interface. It is ideal for homework, calculations at work, or technical problem solving.</p>
-  <a class="tool-link" href="calculator_scientific.html">Use the Scientific Calculator</a>
+    <div class="card">
+      <h3>Online Learning & Skill Development</h3>
+      <p>Focused on modern education paths, self-learning systems, and career-aligned skill building.</p>
+      <ul>
+        <li>Digital courses and learning platforms</li>
+        <li>Career-oriented skill stacks</li>
+        <li>Learning frameworks and outcomes</li>
+      </ul>
+      <a href="/topics/online-learning">Explore Learning Hub →</a>
+    </div>
 
-  <h2>Standard Calculator</h2>
-  <p>The <strong>Standard Calculator</strong> is a simple and reliable tool for basic arithmetic operations such as addition, subtraction, multiplication, and division. It is perfect for quick calculations in daily life, office tasks, or shopping. This calculator is fully responsive, easy to use, and ideal for students, professionals, and everyday users.</p>
-  <a class="tool-link" href="calculator_standard.html">Use the Standard Calculator</a>
+    <div class="card">
+      <h3>E-commerce & Consumer Products</h3>
+      <p>Covers how products are discovered, evaluated, and purchased in the digital marketplace.</p>
+      <ul>
+        <li>Product research and comparisons</li>
+        <li>Direct-to-consumer trends</li>
+        <li>Buyer decision psychology</li>
+      </ul>
+      <a href="/topics/ecommerce-products">Explore E-commerce Hub →</a>
+    </div>
 
-  <h2>Unit Converter</h2>
-  <p>Our <strong>Unit Converter</strong> allows you to convert between different units of length, weight, and temperature. Whether you need to convert meters to miles, kilograms to pounds, or Celsius to Fahrenheit, this tool provides accurate and instant results. It is a handy utility for students, engineers, travelers, and anyone who deals with measurements regularly.</p>
-  <a class="tool-link" href="unit_converter.html">Use the Unit Converter</a>
+    <div class="card">
+      <h3>Travel, Remote Work & Lifestyle</h3>
+      <p>Explores location-independent living, modern travel, and flexible work systems.</p>
+      <ul>
+        <li>Remote work tools and workflows</li>
+        <li>Travel planning and logistics</li>
+        <li>Lifestyle design concepts</li>
+      </ul>
+      <a href="/topics/remote-work-travel">Explore Lifestyle Hub →</a>
+    </div>
 
-  <h2>Date Difference Calculator</h2>
-  <p>The <strong>Date Difference Calculator</strong> calculates the difference between two dates in years, months, and days. This tool is useful for planning events, calculating age differences, or managing project timelines. By entering a start date and an end date, you can instantly find the duration between two dates accurately.</p>
-  <a class="tool-link" href="date_difference_calculator.html">Use the Date Difference Calculator</a>
+  </div>
+</section>
 
-  <h2>Time Zone Converter</h2>
-  <p>With global communication and remote work, the <strong>Time Zone Converter</strong> is an essential tool. Convert time between different time zones quickly to schedule meetings, travel, or coordinate with friends and colleagues worldwide. This tool supports major time zones including UTC, IST, EST, PST, and more, providing accurate time conversions instantly.</p>
-  <a class="tool-link" href="time_zone_converter.html">Use the Time Zone Converter</a>
+<section>
+  <div class="credibility">
+    <h2>Built for Depth, Not Clicks</h2>
+    <p>This platform prioritizes clarity, research, and long-term relevance. Content is designed to inform first, helping readers understand complex topics before making decisions.</p>
+  </div>
+</section>
 
-  <h2>Tip Calculator</h2>
-  <p>Dining out or sharing expenses is easier with the <strong>Tip Calculator</strong>. Calculate the tip amount and split the bill among friends effortlessly. This tool allows you to enter the total bill, select a tip percentage, and specify the number of people splitting the bill. It is an essential tool for travelers, families, and group diners.</p>
-  <a class="tool-link" href="tip_calculator.html">Use the Tip Calculator</a>
-
-  <p>Each of these tools is designed with user experience and accuracy in mind. They are free to use, mobile-friendly, and accessible from anywhere. By providing these essential online calculators and converters in one hub, we aim to make daily tasks simpler, faster, and more reliable for everyone.</p>
-
-  <p>Whether you are planning your finances, tracking your health, calculating dates, converting units, or preparing for travel, the Daily Life Tools Hub provides instant, accurate, and easy-to-use solutions. Bookmark this page and access all your favorite tools in one place!</p>
-
-  <p>Start using these tools today to simplify calculations, conversions, and everyday tasks efficiently. Each tool has been tested for accuracy, responsiveness, and usability, ensuring a seamless experience for students, professionals, travelers, and everyday users worldwide.</p>
-</main>
+<footer>
+  <p>© 2025 Knowledge Hub · Independent, Research-Driven Digital Content</p>
+</footer>
 
 </body>
 </html>
-
-
-
