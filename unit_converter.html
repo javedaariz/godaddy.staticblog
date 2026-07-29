@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter - Convert Length, Weight, Temperature</title>
+  <meta name="description" content="Convert units easily with our Unit Converter. Supports Length, Weight, and Temperature conversions.">
+  <meta name="keywords" content="Unit Converter, Length Converter, Weight Converter, Temperature Converter, Online Tool">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    main {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    label { display: block; margin: 15px 0 5px; font-weight: bold; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #00b4d8;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
+    button:hover { background: #0077b6; }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Unit Converter</h1>
+  <p>Convert units of Length, Weight, and Temperature easily.</p>
+</header>
+
+<main>
+  <label for="category">Select Category:</label>
+  <select id="category" onchange="updateUnits()">
+    <option value="length">Length</option>
+    <option value="weight">Weight</option>
+    <option value="temperature">Temperature</option>
+  </select>
+
+  <label for="fromUnit">From Unit:</label>
+  <select id="fromUnit"></select>
+
+  <label for="toUnit">To Unit:</label>
+  <select id="toUnit"></select>
+
+  <label for="value">Value:</label>
+  <input type="number" id="value" placeholder="Enter value">
+
+  <button onclick="convert()">Convert</button>
+
+  <div id="result" class="result"></div>
+</main>
+
+<script>
+  const units = {
+    length: ["Meter", "Kilometer", "Centimeter", "Millimeter", "Mile", "Yard", "Foot", "Inch"],
+    weight: ["Gram", "Kilogram", "Milligram", "Pound", "Ounce"],
+    temperature: ["Celsius", "Fahrenheit", "Kelvin"]
+  };
+
+  const lengthFactors = {
+    Meter: 1,
+    Kilometer: 1000,
+    Centimeter: 0.01,
+    Millimeter: 0.001,
+    Mile: 1609.34,
+    Yard: 0.9144,
+    Foot: 0.3048,
+    Inch: 0.0254
+  };
+
+  const weightFactors = {
+    Gram: 1,
+    Kilogram: 1000,
+    Milligram: 0.001,
+    Pound: 453.592,
+    Ounce: 28.3495
+  };
+
+  function updateUnits() {
+    const category = document.getElementById('category').value;
+    const fromUnit = document.getElementById('fromUnit');
+    const toUnit = document.getElementById('toUnit');
+
+    fromUnit.innerHTML = '';
+    toUnit.innerHTML = '';
+
+    units[category].forEach(unit => {
+      const optionFrom = document.createElement('option');
+      optionFrom.value = unit;
+      optionFrom.textContent = unit;
+      fromUnit.appendChild(optionFrom);
+
+      const optionTo = document.createElement('option');
+      optionTo.value = unit;
+      optionTo.textContent = unit;
+      toUnit.appendChild(optionTo);
+    });
+  }
+
+  function convert() {
+    const category = document.getElementById('category').value;
+    const fromUnit = document.getElementById('fromUnit').value;
+    const toUnit = document.getElementById('toUnit').value;
+    const value = parseFloat(document.getElementById('value').value);
+
+    if (!value && value !== 0) {
+      alert('Please enter a valid value.');
+      return;
+    }
+
+    let resultValue = 0;
+
+    if (category === 'length') {
+      resultValue = value * lengthFactors[fromUnit] / lengthFactors[toUnit];
+    } else if (category === 'weight') {
+      resultValue = value * weightFactors[fromUnit] / weightFactors[toUnit];
+    } else if (category === 'temperature') {
+      if (fromUnit === "Celsius") {
+        if (toUnit === "Fahrenheit") resultValue = (value * 9/5) + 32;
+        else if (toUnit === "Kelvin") resultValue = value + 273.15;
+        else resultValue = value;
+      } else if (fromUnit === "Fahrenheit") {
+        if (toUnit === "Celsius") resultValue = (value - 32) * 5/9;
+        else if (toUnit === "Kelvin") resultValue = (value - 32) * 5/9 + 273.15;
+        else resultValue = value;
+      } else if (fromUnit === "Kelvin") {
+        if (toUnit === "Celsius") resultValue = value - 273.15;
+        else if (toUnit === "Fahrenheit") resultValue = (value - 273.15) * 9/5 + 32;
+        else resultValue = value;
+      }
+    }
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `${value} ${fromUnit} = <strong>${resultValue.toFixed(2)} ${toUnit}</strong>`;
+    resultDiv.style.display = 'block';
+  }
+
+  // Initialize units on page load
+  updateUnits();
+</script>
+
+</body>
+</html>

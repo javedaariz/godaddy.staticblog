@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Zone Converter - Convert Time Across Time Zones</title>
+  <meta name="description" content="Convert time between different time zones easily with our Time Zone Converter tool.">
+  <meta name="keywords" content="Time Zone Converter, Time Conversion, World Time, Online Tool">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    main {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #00b4d8;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    button:hover { background: #0077b6; }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Time Zone Converter</h1>
+  <p>Convert time from one time zone to another instantly.</p>
+</header>
+
+<main>
+  <label for="timeInput">Enter Time:</label>
+  <input type="time" id="timeInput">
+
+  <label for="fromTimeZone">From Time Zone:</label>
+  <select id="fromTimeZone"></select>
+
+  <label for="toTimeZone">To Time Zone:</label>
+  <select id="toTimeZone"></select>
+
+  <button onclick="convertTime()">Convert Time</button>
+
+  <div id="result" class="result"></div>
+</main>
+
+<script>
+  const timeZones = [
+    "UTC", "GMT", "EST", "EDT", "CST", "CDT", "MST", "MDT", "PST", "PDT",
+    "IST", "CET", "CEST", "EET", "EEST", "JST", "AEST", "ACST", "AWST"
+  ];
+
+  const offsets = {
+    "UTC": 0, "GMT": 0, "EST": -5, "EDT": -4, "CST": -6, "CDT": -5,
+    "MST": -7, "MDT": -6, "PST": -8, "PDT": -7, "IST": 5.5, "CET": 1,
+    "CEST": 2, "EET": 2, "EEST": 3, "JST": 9, "AEST": 10, "ACST": 9.5, "AWST": 8
+  };
+
+  const fromSelect = document.getElementById('fromTimeZone');
+  const toSelect = document.getElementById('toTimeZone');
+
+  timeZones.forEach(zone => {
+    const option1 = document.createElement('option');
+    option1.value = zone;
+    option1.textContent = zone;
+    fromSelect.appendChild(option1);
+
+    const option2 = document.createElement('option');
+    option2.value = zone;
+    option2.textContent = zone;
+    toSelect.appendChild(option2);
+  });
+
+  fromSelect.value = "UTC";
+  toSelect.value = "IST";
+
+  function convertTime() {
+    const timeInput = document.getElementById('timeInput').value;
+    if (!timeInput) {
+      alert('Please enter a valid time.');
+      return;
+    }
+
+    const [hours, minutes] = timeInput.split(':').map(Number);
+    const fromOffset = offsets[fromSelect.value];
+    const toOffset = offsets[toSelect.value];
+
+    let date = new Date();
+    date.setUTCHours(hours - fromOffset, minutes, 0, 0);
+
+    const convertedHours = (date.getUTCHours() + toOffset + 24) % 24;
+    const convertedMinutes = date.getUTCMinutes();
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `Converted Time: ${convertedHours.toString().padStart(2,'0')}:${convertedMinutes.toString().padStart(2,'0')} ${toSelect.value}`;
+    resultDiv.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator - Calculate Your Tip Easily</title>
+  <meta name="description" content="Use our Tip Calculator to quickly calculate tips and split bills. Perfect for restaurants and daily use.">
+  <meta name="keywords" content="Tip Calculator, Bill Split, Tip Percentage, Daily Tools">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff6b6b;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+    main {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ff6b6b;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ff4c4c;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e2f7e2;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tip Calculator</h1>
+    <p>Quickly calculate tips and split bills with ease</p>
+  </header>
+
+  <main>
+    <label for="billAmount">Bill Amount ($)</label>
+    <input type="number" id="billAmount" placeholder="Enter total bill amount">
+
+    <label for="tipPercentage">Tip Percentage (%)</label>
+    <select id="tipPercentage">
+      <option value="5">5%</option>
+      <option value="10">10%</option>
+      <option value="15" selected>15%</option>
+      <option value="18">18%</option>
+      <option value="20">20%</option>
+      <option value="25">25%</option>
+    </select>
+
+    <label for="people">Number of People</label>
+    <input type="number" id="people" placeholder="Enter number of people" value="1" min="1">
+
+    <button onclick="calculateTip()">Calculate Tip</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </main>
+
+  <script>
+    function calculateTip() {
+      const bill = parseFloat(document.getElementById('billAmount').value);
+      const tipPercent = parseFloat(document.getElementById('tipPercentage').value);
+      const people = parseInt(document.getElementById('people').value);
+
+      if (!bill || bill <= 0 || !people || people <= 0) {
+        alert('Please enter valid bill amount and number of people.');
+        return;
+      }
+
+      const totalTip = (bill * tipPercent) / 100;
+      const totalBill = bill + totalTip;
+      const perPerson = totalBill / people;
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        Total Tip: $${totalTip.toFixed(2)} <br>
+        Total Bill: $${totalBill.toFixed(2)} <br>
+        Amount per Person: $${perPerson.toFixed(2)}
+      `;
+      resultDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
