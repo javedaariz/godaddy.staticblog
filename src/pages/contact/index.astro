@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+---
+<Base title="Contact" description="Get in touch with Suggestions Blog to report a correction or suggest a topic.">
+  <div class="wrap page prose">
+    <h1>Contact</h1>
+    <p>Spotted a mistake, or want us to cover a topic? We read every message and aim to reply within a few working days.</p>
+    {site.contactEmail
+      ? <p>Email: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+      : <p class="notice"><strong>Site owner:</strong> set the <code>PUBLIC_CONTACT_EMAIL</code> environment variable (see README) so your email address appears here before going live.</p>}
+    <p>We cannot give personal financial, tax, legal or medical advice.</p>
+  </div>
+</Base>

@@ -1,0 +1,98 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render, getCollection } from 'astro:content';
+import Base from './Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PostCard from '../components/PostCard.astro';
+import { categories, site } from '../data/site';
+
+interface Props { post: CollectionEntry<'posts'> }
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const d = post.data;
+const c = categories[d.category];
+const url = `${site.url}/${d.category}/${post.id}/`;
+const fmt = (x: Date) => x.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const minutes = Math.max(1, Math.round(words / 220));
+const toc = headings.filter((h) => h.depth === 2);
+const related = (await getCollection('posts', (p) => !p.data.draft && p.data.category === d.category && p.id !== post.id)).slice(0, 3);
+const notice = c.notice;
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.pubDate.toISOString(),
+    dateModified: d.updatedDate.toISOString(),
+    inLanguage: 'en-GB',
+    mainEntityOfPage: url,
+    author: { '@type': 'Person', name: site.author.name, url: `${site.url}/about/` },
+    publisher: { '@type': 'Organization', name: site.name, url: site.url },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url + '/' },
+      { '@type': 'ListItem', position: 2, name: c.title, item: `${site.url}/${d.category}/` },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url },
+    ],
+  },
+];
+---
+<Base title={d.title} description={d.description} type="article" pubDate={d.pubDate} updatedDate={d.updatedDate} jsonLd={ld}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href={`/${d.category}/`}>{c.title}</a>
+    </nav>
+    <header class="article-head" style={`--h:${c.hue}`}>
+      <span class="badge">{c.title}</span>
+      <h1 style="margin-top:.6rem">{d.title}</h1>
+      <p class="byline">
+        <span>By <strong>{site.author.name}</strong></span>
+        <span>Published <time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time></span>
+        <span>Last updated <time datetime={d.updatedDate.toISOString()}>{fmt(d.updatedDate)}</time></span>
+        <span>{minutes} min read</span>
+      </p>
+    </header>
+
+    <div class="answer"><b class="label">The short answer</b><p>{d.summary}</p></div>
+
+    {d.affiliate && <p class="notice"><strong>Disclosure:</strong> this article contains affiliate links. We may earn a commission if you buy through them, at no extra cost to you. It never changes what we recommend.</p>}
+    {d.handsOn === 'no' && <p class="notice"><strong>Overview, not a review:</strong> we have not hands-on tested the products mentioned here. Treat this as a starting list and check prices and features on each provider's site.</p>}
+    {notice === 'finance' && <p class="notice"><strong>General information, not financial advice.</strong> Rules and rates change. Check GOV.UK or speak to a regulated adviser or accountant before you act.</p>}
+    {notice === 'health' && <p class="notice"><strong>Not medical advice.</strong> This is general information. For personal health questions, speak to your GP, pharmacist or NHS 111.</p>}
+
+    <div class:list={['layout', { 'with-toc': toc.length >= 3 }]}>
+      <article class="prose"><Content /></article>
+      {toc.length >= 3 && (
+        <aside class="toc" aria-label="On this page"><b>On this page</b>{toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}</aside>
+      )}
+    </div>
+
+    {d.sources.length > 0 && (
+      <section class="sources" aria-labelledby="src-h">
+        <h2 id="src-h" style="font-size:1.15rem">Sources</h2>
+        <ul>{d.sources.map((s) => <li><a href={s.url} rel="noopener">{s.title}</a></li>)}</ul>
+      </section>
+    )}
+
+    <section class="authorbox" aria-label="About the author">
+      <span class="avatar" aria-hidden="true">{site.author.name[0]}</span>
+      <div><strong>{site.author.name}</strong> · {site.author.role}<p>{site.author.bio} <a href="/editorial-policy/">How we write and check articles</a>.</p></div>
+    </section>
+  </div>
+
+  <section class="block"><div class="wrap"><Newsletter /></div></section>
+
+  {related.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head"><h2>More on {c.title}</h2></div>
+        <div class="grid">{related.map((p) => <PostCard post={p} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>

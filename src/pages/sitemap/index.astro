@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { categories, categoryKeys } from '../../data/site';
+const posts = (await getCollection('posts', (p) => !p.data.draft)).sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<Base title="Sitemap" description="Every page and article on Suggestions Blog.">
+  <div class="wrap page prose">
+    <h1>Sitemap</h1>
+    <h2>Pages</h2>
+    <ul>
+      <li><a href="/">Home</a></li><li><a href="/blog/">All articles</a></li><li><a href="/tools/">Free tools</a></li>
+      <li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li>
+      <li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of use</a></li>
+    </ul>
+    {categoryKeys.map((k) => {
+      const ps = posts.filter((p) => p.data.category === k);
+      return (<>
+        <h2><a href={`/${k}/`}>{categories[k].title}</a></h2>
+        {ps.length ? <ul>{ps.map((p) => <li><a href={`/${k}/${p.id}/`}>{p.data.title}</a></li>)}</ul> : <p class="muted">Coming soon.</p>}
+      </>);
+    })}
+  </div>
+</Base>

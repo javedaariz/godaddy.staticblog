@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { categories, categoryKeys } from '../../data/site';
+const posts = (await getCollection('posts', (p) => !p.data.draft)).sort((a, b) => +b.data.updatedDate - +a.data.updatedDate);
+---
+<Base title="All articles" description="Every Suggestions Blog article on UK freelancer tax, money, AI, remote work, health and learning, newest first.">
+  <div class="wrap page" style="max-width:none">
+    <h1>All articles</h1>
+    <p class="muted">Newest updates first. Each one shows when it was published and last checked.</p>
+    <div class="chips" aria-label="Topics">
+      {categoryKeys.map((k) => <a href={`/${k}/`}>{categories[k].title}</a>)}
+    </div>
+    <div class="grid">{posts.map((p) => <PostCard post={p} />)}</div>
+  </div>
+</Base>

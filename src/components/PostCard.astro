@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categories } from '../data/site';
+const { post } = Astro.props as { post: CollectionEntry<'posts'> };
+const c = categories[post.data.category];
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<article class="card" style={`--h:${c.hue}`}>
+  <span class="badge">{c.title}</span>
+  <h3><a href={`/${post.data.category}/${post.id}/`}>{post.data.title}</a></h3>
+  <p>{post.data.description}</p>
+  <div class="meta">Updated <time datetime={post.data.updatedDate.toISOString()}>{fmt(post.data.updatedDate)}</time></div>
+</article>

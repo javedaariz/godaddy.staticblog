@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import HubIcon from '../components/HubIcon.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { categories, categoryKeys, site } from '../data/site';
+
+const posts = (await getCollection('posts', (p) => !p.data.draft)).sort((a, b) => +b.data.updatedDate - +a.data.updatedDate);
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const latest = posts.filter((p) => p.id !== featured.id).slice(0, 6);
+const counts = Object.fromEntries(categoryKeys.map((k) => [k, posts.filter((p) => p.data.category === k).length]));
+---
+<Base title={site.name} description={site.description}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">UK-first · Updated after every Budget</p>
+      <h1>Clear UK guides for freelancers and remote workers</h1>
+      <p class="lead">Tax deadlines, savings rules, AI workflows and your rights at work. Every article is dated, sourced and starts with the answer.</p>
+      <div class="row">
+        <a class="btn" href={`/${featured.data.category}/${featured.id}/`}>Start with Making Tax Digital</a>
+        <a class="btn ghost" href="/blog/">Browse all articles</a>
+      </div>
+      <ul class="trust">
+        <li>Sourced from GOV.UK and official bodies</li>
+        <li>Published and last-updated dates on every page</li>
+        <li><a href="/editorial-policy/">How we check facts</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <article class="feature" style={`--h:${categories[featured.data.category].hue}`}>
+        <span class="badge">Start here · {categories[featured.data.category].title}</span>
+        <h3><a href={`/${featured.data.category}/${featured.id}/`}>{featured.data.title}</a></h3>
+        <p>{featured.data.summary}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head"><h2>Latest updates</h2><a href="/blog/">All articles →</a></div>
+      <div class="grid">{latest.map((p) => <PostCard post={p} />)}</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head"><h2>Browse by topic</h2></div>
+      <div class="grid">
+        {categoryKeys.map((k) => (
+          <article class="card" style={`--h:${categories[k].hue}`}>
+            <HubIcon cat={k} />
+            <h3><a href={`/${k}/`}>{categories[k].title}</a></h3>
+            <p>{categories[k].blurb}</p>
+            <div class="meta">{counts[k]} {counts[k] === 1 ? 'article' : 'articles'}{counts[k] === 0 ? ' · coming soon' : ''}</div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block"><div class="wrap"><Newsletter /></div></section>
+</Base>

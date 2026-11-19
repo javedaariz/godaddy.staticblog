@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+const live = Boolean(site.newsletterAction);
+const show = live || import.meta.env.DEV;
+---
+{show && (
+  <aside class:list={['signup', { 'dev-only': !live }]} aria-labelledby="signup-h">
+    <h2 id="signup-h">One useful email a week</h2>
+    <p>The UK tax and work changes that matter to freelancers, in plain English, with the date to act by. No spam, unsubscribe any time.</p>
+    <form action={site.newsletterAction || '#'} method="post" target="_blank" onsubmit={live ? undefined : 'return false'}>
+      <label class="skip" for="nl-email">Email address</label>
+      <input id="nl-email" type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+      <button class="btn" type="submit">Subscribe</button>
+    </form>
+    <small>We use your email only to send the newsletter. See the <a href="/privacy/">privacy policy</a>.</small>
+    {!live && <small>DEV PREVIEW ONLY: set PUBLIC_NEWSLETTER_ACTION to switch this on. Hidden on the live site until then.</small>}
+  </aside>
+)}

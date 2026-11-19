@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard Calculator - Basic Arithmetic Tool</title>
+  <meta name="description" content="Use the Standard Calculator to perform basic arithmetic operations like addition, subtraction, multiplication, and division.">
+  <meta name="keywords" content="Standard Calculator, Calculator, Basic Arithmetic, Online Tool, Add, Subtract, Multiply, Divide">
+  <meta name="robots" content="index, follow">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; }
+
+    main {
+      max-width: 400px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      text-align: right;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 20px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button.operator { background: #00b4d8; color: white; }
+    button.number { background: #e0e0e0; }
+    button:hover { opacity: 0.9; }
+    button.clear { background: #ff6b6b; color: white; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Standard Calculator</h1>
+  <p>Perform basic arithmetic operations quickly and easily.</p>
+</header>
+
+<main>
+  <input type="text" id="display" disabled placeholder="0">
+
+  <div class="buttons">
+    <button class="number" onclick="appendNumber('7')">7</button>
+    <button class="number" onclick="appendNumber('8')">8</button>
+    <button class="number" onclick="appendNumber('9')">9</button>
+    <button class="operator" onclick="appendOperator('/')">/</button>
+
+    <button class="number" onclick="appendNumber('4')">4</button>
+    <button class="number" onclick="appendNumber('5')">5</button>
+    <button class="number" onclick="appendNumber('6')">6</button>
+    <button class="operator" onclick="appendOperator('*')">*</button>
+
+    <button class="number" onclick="appendNumber('1')">1</button>
+    <button class="number" onclick="appendNumber('2')">2</button>
+    <button class="number" onclick="appendNumber('3')">3</button>
+    <button class="operator" onclick="appendOperator('-')">-</button>
+
+    <button class="number" onclick="appendNumber('0')">0</button>
+    <button class="number" onclick="appendNumber('.')">.</button>
+    <button class="clear" onclick="clearDisplay()">C</button>
+    <button class="operator" onclick="appendOperator('+')">+</button>
+
+    <button style="grid-column: span 4; background: #00b4d8; color:white;" onclick="calculate()">=</button>
+  </div>
+</main>
+
+<script>
+  let display = document.getElementById('display');
+  let currentInput = '';
+
+  function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+  }
+
+  function appendOperator(operator) {
+    if (currentInput === '') return;
+    currentInput += operator;
+    display.value = currentInput;
+  }
+
+  function clearDisplay() {
+    currentInput = '';
+    display.value = '';
+  }
+
+  function calculate() {
+    try {
+      const result = eval(currentInput);
+      display.value = result;
+      currentInput = result.toString();
+    } catch {
+      display.value = 'Error';
+      currentInput = '';
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site, categories, categoryKeys } from '../../data/site';
+---
+<Base title="About" description="Who writes Suggestions Blog, what it covers and how to trust it.">
+  <div class="wrap page prose">
+    <h1>About {site.name}</h1>
+    <p>{site.name} explains UK tax, money and work changes in plain English for freelancers and remote workers. Every article opens with the answer, shows when it was published and last updated, and links to the official source.</p>
+    <h2>Who writes it</h2>
+    <p><strong>{site.author.name}</strong>, {site.author.role.toLowerCase()}. {site.author.bio}</p>
+    <h2>What it covers</h2>
+    <ul>{categoryKeys.map((k) => <li><a href={`/${k}/`}>{categories[k].title}</a>: {categories[k].blurb}</li>)}</ul>
+    <h2>How to trust it</h2>
+    <p>Read the <a href="/editorial-policy/">editorial policy</a> to see how facts are checked, how often articles are reviewed and how corrections work. Spotted a mistake? <a href="/contact/">Tell us</a>.</p>
+    <h2>Please note</h2>
+    <p>Content is general information, not professional advice. For decisions that matter, speak to a qualified professional.</p>
+  </div>
+</Base>
