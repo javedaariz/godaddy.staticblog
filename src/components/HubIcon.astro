@@ -1,0 +1,7 @@
+---
+import { categories, type CategoryKey } from '../data/site';
+const { cat } = Astro.props as { cat: CategoryKey };
+---
+<span class="hub-ic" style={`--h:${categories[cat].hue}`} aria-hidden="true">
+  <svg viewBox="0 0 24 24"><path d={categories[cat].icon} /></svg>
+</span>

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+const tools = [
+  ['Loan EMI calculator', '/loan_emi_calculator.html', 'Estimate monthly repayments on a loan.'],
+  ['Tip calculator', '/tip_calculator.html', 'Split a bill and work out a tip.'],
+  ['Currency converter', '/currency_converter.html', 'Convert between currencies using live rates.'],
+  ['Date difference calculator', '/date_difference_calculator.html', 'Days, months and years between two dates.'],
+  ['Age calculator', '/age_calculator.html', 'Work out an exact age from a date of birth.'],
+  ['Time zone converter', '/time_zone_converter.html', 'Compare times across the world for remote teams.'],
+  ['Unit converter', '/unit_converter.html', 'Convert length, weight, temperature and more.'],
+  ['BMI calculator', '/bmi_calculator.html', 'Body mass index. General information, not medical advice.'],
+  ['Calculator', '/calculator.html', 'A simple calculator.'],
+  ['Scientific calculator', '/calculator_scientific.html', 'Trigonometry, powers and logs.'],
+];
+---
+<Base title="Free tools" description="Free calculators and converters: loan EMI, tip, currency, dates, time zones, units and BMI.">
+  <div class="wrap page" style="max-width:none">
+    <h1>Free tools</h1>
+    <p class="muted">Simple calculators that run in your browser. They are illustrative, so check important results independently.</p>
+    <div class="grid">
+      {tools.map(([name, href, desc]) => (
+        <article class="card"><h3><a href={href}>{name}</a></h3><p>{desc}</p></article>
+      ))}
+    </div>
+  </div>
+</Base>

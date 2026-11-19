@@ -1,0 +1,23 @@
+---
+import { site, nav } from '../data/site';
+const path = Astro.url.pathname;
+const current = (href: string) => (path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined);
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/"><i aria-hidden="true">S</i>{site.name}</a>
+    <nav class="nav" aria-label="Main">
+      {nav.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+    </nav>
+    <details class="mobile">
+      <summary class="menu-btn">Menu</summary>
+      <nav aria-label="Mobile">
+        {nav.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+        <a href="/money/">Money &amp; Savings</a>
+        <a href="/health/">Health</a>
+        <a href="/learn/">Learn</a>
+        <a href="/about/">About</a>
+      </nav>
+    </details>
+  </div>
+</header>

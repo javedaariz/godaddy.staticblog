@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+---
+<Base title="Editorial policy" description="How Suggestions Blog researches, checks, updates and corrects its articles, and how it handles affiliate links.">
+  <div class="wrap page prose">
+    <h1>Editorial policy</h1>
+    <p class="muted">Last updated 18 November 2026</p>
+    <h2>Sources</h2>
+    <p>For tax, benefits, employment and savings rules we start from GOV.UK, HMRC, ACAS and other official bodies. Where official pages are unavailable we use named professional bodies or established news outlets, and we say so. Each article lists its sources at the bottom.</p>
+    <h2>Answer first</h2>
+    <p>Every article opens with a short direct answer, then gives the detail. We avoid hedged, wandering introductions.</p>
+    <h2>Dates and updates</h2>
+    <p>Each article shows a published date and a last-updated date. We re-check time-sensitive articles after each Budget and whenever a rule or deadline changes. The last-updated date changes only when we have checked the facts, not for small typo fixes.</p>
+    <h2>Corrections</h2>
+    <p>If you find an error, <a href="/contact/">contact us</a>. We correct confirmed mistakes promptly and note significant changes in the article.</p>
+    <h2>Use of AI tools</h2>
+    <p>Where AI tools help with drafting or research, the author checks every fact, figure and date against the cited sources before publishing. Products are described as hands-on tested only if they have been used; otherwise the article says so.</p>
+    <h2>Advice and limits</h2>
+    <p>{site.author.name} is not a regulated financial adviser, accountant or medical professional. Articles are general information and never a personal recommendation. Health articles rely on NHS information.</p>
+    <h2>Affiliate links and money</h2>
+    <p>Articles with affiliate links say so at the top. A commission never decides what we recommend, and we only link to products we have used. We do not currently run display advertising.</p>
+  </div>
+</Base>

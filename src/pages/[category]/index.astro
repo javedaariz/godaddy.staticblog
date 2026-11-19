@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import HubIcon from '../../components/HubIcon.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { categories, categoryKeys, site, type CategoryKey } from '../../data/site';
+
+export function getStaticPaths() {
+  return categoryKeys.map((category) => ({ params: { category } }));
+}
+const category = Astro.params.category as CategoryKey;
+const c = categories[category];
+const posts = (await getCollection('posts', (p) => !p.data.draft && p.data.category === category)).sort(
+  (a, b) => +b.data.updatedDate - +a.data.updatedDate,
+);
+const planned: Partial<Record<CategoryKey, string[]>> = {
+  'remote-work': [
+    'Flexible working in 2027: what changes and what you can do today',
+    'How to ask for remote or hybrid work: a script and what employers can refuse',
+  ],
+};
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: c.title,
+  description: c.description,
+  url: `${site.url}/${category}/`,
+  inLanguage: 'en-GB',
+};
+---
+<Base title={c.title} description={c.description} noindex={posts.length === 0} jsonLd={[ld]}>
+  <div class="wrap page" style={`max-width:none;--h:${c.hue}`}>
+    <nav class="crumbs" aria-label="Breadcrumb" style="margin-top:0"><a href="/">Home</a> / {c.title}</nav>
+    <HubIcon cat={category} />
+    <h1 style="margin-top:1rem">{c.title}</h1>
+    <p class="lead muted" style="font-size:1.2rem;max-width:44rem">{c.description}</p>
+    <div class="chips">
+      {categoryKeys.map((k) => <a href={`/${k}/`} aria-current={k === category ? 'page' : undefined}>{categories[k].title}</a>)}
+    </div>
+    {posts.length > 0 ? (
+      <div class="grid">{posts.map((p) => <PostCard post={p} />)}</div>
+    ) : (
+      <div class="soon">
+        <strong>Articles are on the way.</strong>
+        <p class="muted" style="margin:.3rem 0 0">Planned first:</p>
+        <ul>{(planned[category] ?? ['New articles are being researched.']).map((t) => <li>{t}</li>)}</ul>
+      </div>
+    )}
+  </div>
+  <section class="block"><div class="wrap"><Newsletter /></div></section>
+</Base>
