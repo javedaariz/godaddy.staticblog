@@ -1,5 +1,5 @@
 # Suggestions Blog
-
+removed 
 UK guides for freelancers and remote workers. Built with [Astro](https://astro.build) (static output), Markdown content, self-hosted Inter font, no client-side framework.
 
 ## Run it locally (Node 22+)
